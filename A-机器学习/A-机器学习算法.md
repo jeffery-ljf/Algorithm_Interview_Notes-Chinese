@@ -149,10 +149,10 @@
   [![](../_assets/公式_20180709113237.png)](http://www.codecogs.com/eqnedit.php?latex=P(Y=0|x)=1-P(Y=1|x))
   > 简洁起见，省略了偏置 `b`；也可以看做将偏置扩充到了权重中
 
-  **其中** 
-    
+  **其中**
+
   <!-- [![](../_assets/公式_20180709113352.png)](http://www.codecogs.com/eqnedit.php?latex=P(Y=0|x)=1-P(Y=1|x)) -->
-  
+
   [![](../_assets/公式_20180709113801.png)](http://www.codecogs.com/eqnedit.php?latex=x\in&space;\mathbf{R}^n,Y\in&space;\left&space;\{&space;0,1&space;\right&space;\})
 
 - 通常会将以上两个分布记作：
@@ -161,9 +161,9 @@
 
 > 《统计学习方法》 6.1 逻辑斯蒂回归模型
 >> 原书中记作 `π(x)` 和 `1-π(x)`，这里为了跟神经网络中统一，使用 `σ`
-  
+
 ## 逻辑斯蒂回归推导
-> [逻辑回归推导](https://www.cnblogs.com/daguankele/p/6549891.html) - 罐装可乐 - 博客园 
+> [逻辑回归推导](https://www.cnblogs.com/daguankele/p/6549891.html) - 罐装可乐 - 博客园
 - 推导的关键点 (3)
   1. 逻辑斯蒂回归的定义
   1. 损失函数（极大似然）
@@ -181,7 +181,7 @@
 
     [![](../_assets/公式_20180713131851.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;L(w)&=-\sum_{i=1}^N&space;\left&space;[&space;{\color{Blue}&space;y_i}(w{\color{Red}&space;x_i})-\log(1&plus;\exp(w{\color{Red}&space;x_i}))&space;\right&space;]&space;\end{aligned})
 3. **求梯度**
-    
+
     [![](../_assets/公式_20180713132107.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;\frac{\partial&space;L(w)}{\partial&space;w}&=-\sum_{i=1}^N&space;\left&space;[&space;y_ix_i-\frac{\exp(wx_i)}{1&plus;\exp(wx_i)}x_i&space;\right&space;]\\&space;&=\sum_{i=1}^N&space;[\sigma&space;(x_i)-y_i]x_i&space;\end{aligned})
 4. 使用**梯度下降法**求解参数
     > 深度学习/[梯度下降法](../深度学习/README.md#梯度下降法)
@@ -205,7 +205,7 @@
   - 数据集种的某些点，位置比较特殊。比如 `x+y-2=0` 这条直线，假设出现在直线上方的样本记为 A 类，下方的记为 B 类。
   - 在寻找找这条直线的时候，一般只需看两类数据，它们各自最靠近划分直线的那些点，而其他的点起不了决定作用。
   - 这些点就是所谓的“支持点”，在数学中，这些点称为**向量**，所以更正式的名称为“**支持向量**”。
-  > [SVM中支持向量的通俗解释](https://blog.csdn.net/AerisIceBear/article/details/79588583) - CSDN博客 
+  > [SVM中支持向量的通俗解释](https://blog.csdn.net/AerisIceBear/article/details/79588583) - CSDN博客
 
 ### 支持向量机的分类
 - 线性可分支持向量机
@@ -228,7 +228,7 @@
 
 ## 支持向量机推导
 - SVM 由简至繁包括：**线性可分支持向量机**、**线性支持向量机**以及**非线性支持向量机**
-  
+
 ### 线性可分支持向量机推导
 > 《统计学习方法》 & [支持向量机SVM推导及求解过程](https://blog.csdn.net/american199062/article/details/51322852#commentBox) - CSDN博客
 - 当训练数据**线性可分**时，通过**硬间隔最大化**，学习一个线性分类器，即线性可分支持向量机，又称**硬间隔支持向量机**。
@@ -250,7 +250,7 @@
 
   [![](../_assets/公式_20180713111746.png)](http://www.codecogs.com/eqnedit.php?latex=w^*\cdot&space;\Phi&space;(x)&plus;b^*=0)
   > 映射函数 `Φ(x)` 定义了从输入空间到特征空间的变换，特征空间通常是更高维的，甚至无穷维；方便起见，这里假设 `Φ(x)` 做的是恒等变换。
-  
+
 - 分类决策函数 `f(x)`
 
   [![](../_assets/公式_20180713132655.png)](http://www.codecogs.com/eqnedit.php?latex=f(x)=\mathrm{sign}(w^*\cdot&space;x&plus;b^*))
@@ -274,12 +274,12 @@
     由函数间隔与几何间隔的关系，等价于
 
     [![](../_assets/公式_20180808201943.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;&\underset{w,b}{\max}&space;\quad{\color{Red}&space;\frac{\hat{\gamma}}{\left&space;|&space;w&space;\right&space;|}}&space;\&space;&&space;\mathrm{s.t.}\quad,&space;y_i(wx_i&plus;b)&space;\geq&space;{\color{Red}&space;\hat{\gamma}},\quad&space;i=1,2,\cdots,N&space;\end{aligned})
-    
+
     函数间隔`γ^`的取值不会影响最终的超平面`(w,b)`：取`γ^=1`；又最大化 `1/||w||` 等价于最小化`1/2*||w||^2`，于是有
 
     [![](../_assets/公式_20180713143622.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;&{\color{Red}&space;\underset{w,b}{\max}&space;}&space;\quad\frac{\hat{\gamma}}{{\color{Red}&space;\left&space;\|&space;w&space;\right&space;\|}}&space;\\&space;&\&space;\mathrm{s.t.}\quad\,&space;y_i(wx_i&plus;b)&space;\geq&space;\hat{\gamma}_i,\quad&space;i=1,2,\cdots,N&space;\end{aligned})
     > 为什么令`γ^=1`？——比例改变`(ω,b)`，超平面不会改变，但函数间隔`γ^`会成比例改变，因此可以通过等比例改变`(ω,b)`使函数间隔`γ^=1`
-    
+
 - 该约束最优化问题即为**线性支持向量机**的标准问题——这是一个**凸二次优化**问题，可以使用商业 QP 代码完成。
 
   理论上，线性 SVM 的问题已经解决了；但在高等数学中，**带约束的最优化问题**还可以用另一种方法求解——**拉格朗日乘子法**。该方法的优点一是更容易求解，而是自然引入**核函数**，进而推广到非线性的情况。
@@ -289,7 +289,7 @@
 1. 构建**拉格朗日函数**
 
     [![](../_assets/公式_20180713202306.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;L(w,b,{\color{Red}&space;\alpha})=&\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red}&space;\alpha_i}[y_i(w^Tx_i&plus;b)-1]\\&space;&{\color{Red}&space;\alpha_i&space;\geq&space;0},\quad&space;i=1,2,\cdots,N&space;\end{aligned})
-    
+
 1. 标准问题是求极小极大问题：
 
     [![](../_assets/公式_20180713152150.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;{\color{Red}&space;\underset{w,b}{\min}}\&space;{\color{Blue}&space;\underset{\alpha}{\max}}\&space;L(w,b,\alpha)&space;\end{aligned})
@@ -297,7 +297,7 @@
     其对偶问题为：
 
     [![](../_assets/公式_20180713152255.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;{\color{Blue}&space;\underset{\alpha}{\max}}\&space;{\color{Red}&space;\underset{w,b}{\min}}\&space;L(w,b,\alpha)&space;\end{aligned})
-    
+
 1. 求 `L` 对 `(w,b)` 的极小
 
     [![](../_assets/公式_20180713193142.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;\mathrm{set}\quad&space;\frac{\partial&space;L}{\partial&space;w}=0&space;\;\;&\Rightarrow\;&space;w-\sum_{i=1}^N&space;{\color{Red}&space;\alpha_i&space;y_i&space;x_i}=0\\&space;&\Rightarrow\;&space;w=\sum_{i=1}^N&space;{\color{Red}&space;\alpha_i&space;y_i&space;x_i}&space;\end{aligned})
@@ -311,11 +311,11 @@
     即
 
     [![](../_assets/公式_20180713195135.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;L(w,b,{\color{Red}&space;\alpha})&space;&=\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red}&space;\alpha_i}[y_i(w^Tx_i&plus;b)-1]\\&space;&=\frac{1}{2}w^Tw-w^T\sum_{i=1}^N&space;\alpha_iy_ix_i-b\sum_{i=1}^N&space;\alpha_iy_i&plus;\sum_{i=1}^N&space;\alpha_i\\&space;&=\frac{1}{2}w^Tw-w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\\&space;&=-\frac{1}{2}w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\\&space;&=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N&space;\alpha_i\alpha_j\cdot&space;y_iy_j\cdot&space;{\color{Red}&space;x_i^Tx_j}&plus;\sum_{i=1}^N&space;\alpha_i&space;\end{aligned})
-    
+
 1. 求 `L` 对 `α` 的极大，即
 
     [![](../_assets/公式_20180713200756.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;&\underset{\alpha}{\max}&space;\quad&space;-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N&space;\alpha_i\alpha_j\cdot&space;y_iy_j\cdot&space;x_i^Tx_j&plus;\sum_{i=1}^N&space;\alpha_i\\&space;&\&space;\mathrm{s.t.}\quad\;&space;\sum_{i=1}^N&space;\alpha_i&space;y_i=0,\&space;\&space;{\color{Red}&space;\alpha_i&space;\geq&space;0},\quad&space;i=1,2,\cdots,N&space;\end{aligned})
-    
+
     该问题的对偶问题为：
 
     [![](../_assets/公式_20180713200840.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;&{\color{Red}&space;\underset{\alpha}{\min}&space;}&space;\quad\&space;\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N&space;\alpha_i\alpha_j\cdot&space;y_iy_j\cdot&space;x_i^Tx_j-\sum_{i=1}^N&space;\alpha_i\\&space;&\&space;\mathrm{s.t.}\quad\;&space;\sum_{i=1}^N&space;\alpha_i&space;y_i=0,\&space;\&space;{\color{Red}&space;\alpha_i&space;\geq&space;0},\quad&space;i=1,2,\cdots,N&space;\end{aligned})
@@ -326,7 +326,7 @@
 1. 设 `α` 的解为 `α*`，则存在下标`j`使`α_j > 0`，可得标准问题的解为：
 
     [![](../_assets/公式_20180713203827.png)](http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;w^*&=\sum_{i=1}^N&space;\alpha_i^*y_ix_i\\&space;b^*&={\color{Red}&space;y_j}-\sum_{i=1}^N&space;\alpha_i^*y_i(x_i^T{\color{Red}&space;x_j})&space;\end{aligned})
-    
+
     可得分离超平面及分类决策函数为：
 
     [![](../_assets/公式_20180713111647.png)](http://www.codecogs.com/eqnedit.php?latex=w^*\cdot&space;x&plus;b^*=0)
@@ -341,11 +341,15 @@
 ## 分类树 - ID3 决策树与 C4.5 决策树 TODO
 - ID3 决策树和 C4.5 决策树的**区别**在于：前者使用**信息增益**来进行特征选择，而后者使用**信息增益比**。
 
+    信息增益公式：
+
+    ![](../_assets/信息增益公式1.gif)
+
 ## 决策树如何避免过拟合 TODO
 
 ## 回归树 - CART 决策树
 > 《统计学习方法》 5.5 CART 算法
-- CART 算法是在给定输入随机变量 _`X`_ 条件下输出随机变量 _`Y`_ 的**条件概率分布**的学习方法。 
+- CART 算法是在给定输入随机变量 _`X`_ 条件下输出随机变量 _`Y`_ 的**条件概率分布**的学习方法。
 - CART 算法假设决策树是**二叉树**，内部节点特征的取值为“**是**”和“**否**”。
 
   这样的决策树等价于递归地二分每个特征，**将输入空间/特征空间划分为有限个单元**，然后在这些单元上确定在输入给定的条件下输出的**条件概率分布**。
@@ -378,7 +382,7 @@
 
   其中输出值 `c1` 和 `c2` 分别为
   <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\hat{c}_1={\color{Red}&space;\mathrm{avg}}(y_i|x_i\in&space;R_1(j,s)),\quad\&space;\hat{c}_2={\color{Red}&space;\mathrm{avg}}(y_i|x_i\in&space;R_2(j,s))"><img src="../_assets/公式_2018071893503.png" /></a></div>
-  
+
   > 示例: [选择切分变量与切分点](#示例-选择切分变量与切分点)
 - 接着，继续对两个子空间重复以上步骤，直到满足条件为止；得到将输入空间划分为`M`个区域的决策树
   <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=f(x)=\sum_{m=1}^M&space;\hat{c}_m{\color{Red}&space;I(x\in&space;R_m)}"><img src="../_assets/公式_2018071895945.png" /></a></div>
@@ -401,7 +405,7 @@
 
   所有 `m(s)` 的计算结果如下
 
-  s   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
+  s   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
   ----|---|---|---|---|---|---|---|---|---
   m(s)|15.72|12.07|8.36|5.78|3.91|1.93|8.01|11.73|15.74
 
@@ -425,7 +429,7 @@
   - [提升方法 AdaBoost](#提升方法-adaboost)
   - 提升树
   - 梯度提升树 GBDT
-  
+
 #### Boosting 策略要解决的两个基本问题
 1. 每一轮如何改变数据的权值或概率分布？
 1. 如何将弱分类器组合成一个强分类器？
@@ -480,11 +484,11 @@
         因为 `y, G(x) ∈ {-1, 1}`，所以实际上
 
         [![](../_assets/公式_20180715134916.png)](http://www.codecogs.com/eqnedit.php?latex={\color{Blue}y_iG_m(x_i)&space;}=\left\{\begin{matrix}&space;1,&&space;G_m(x_i)=y_i&space;\\&space;-1,&&space;G_m(x_i)\neq&space;y_i&space;\end{matrix}\right.)
-        
+
         因此 `w_{m+1,i}` 也可以写作
 
         [![](../_assets/公式_20180715135945.png)](http://www.codecogs.com/eqnedit.php?latex=\dpi{120}&space;w_{m&plus;1,i}=\left\{\begin{matrix}&space;\frac{w_{m,i}}{Z_m}e^{\color{Red}&space;{-\alpha_m}},&space;&&space;G_m(x_i)=y_i&space;\\&space;\frac{w_{m,i}}{Z_m}e^{\color{Red}&space;{\alpha_m}},&&space;G_m(x_i)\neq&space;y_i&space;\end{matrix}\right.)
-    
+
 1. 构建基学习器的**线性组合**
 
     [![](../_assets/公式_20180715141210.png)](http://www.codecogs.com/eqnedit.php?latex=G(x)=\mathrm{sign}(\sum_{m=1}^M\alpha_mG_m(x)))
@@ -492,7 +496,7 @@
 ### AdaBoost 算法要点说明
 - 开始时，训练集中所有数据具有均匀的权值分布
 - 计算分类误差率，实际上就是计算所有分类错误的数据的权值之和
-- `G_m(x)` 的系数 `α_m` 表示该学习器在最终学习器中的重要性；公式 
+- `G_m(x)` 的系数 `α_m` 表示该学习器在最终学习器中的重要性；公式
   [![](../_assets/公式_20180715133256.png)](http://www.codecogs.com/eqnedit.php?latex=\alpha_m=\frac{1}{2}\ln\frac{1-e_m}{e_m}) 表明当分类错误率 `e_m <= 1/2` 时，`α_m >= 0`，并且 `α_m` 随 `e_m` 的减小而增大
 - 被基分类器分类错误的样本权值会扩大，而分类正确的权值会缩小——**不改变训练数据，而不断改变训练数据权值的分布，使训练数据在基学习器的学习中起到不同的作用**，这是 AdaBoost 的一个特点。
 
@@ -559,7 +563,7 @@
 
     1. **拟合残差**学习下一个回归树的参数
         <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\hat{\Theta}_m=\arg\underset{\Theta_m}{\min}\sum_{i=1}^N&space;L({\color{Red}&space;r_{m,i}},{\color{Blue}&space;T(x_i;\Theta_m)})"><img src="../_assets/公式_20180717115402.png" /></a></div>
-        
+
         > [回归树算法推导](#回归树算法推导) TODO
     1. 更新 `f_m(x)`
         <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=f_m(x)=f_{m-1}(x)&plus;T(x;\Theta_m)"><img src="../_assets/公式_20180717115616.png" /></a></div>
@@ -582,7 +586,7 @@
 1. 对 `m=1,2,..,M`
     1. 对 `i=1,2,..,N`，计算残差/负梯度
         <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=r_{m,i}=-\frac{\partial&space;L(y_i,{\color{Red}&space;f_{m-1}(x_i)}))}{\partial&space;{\color{Red}&space;f_{m-1}(x_i)}}"><img src="../_assets/公式_20180717144904.png" /></a></div>
-    
+
     1. 对 `r_mi` 拟合一个回归树，得到第 `m` 棵树的叶节点区域
         <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=R_{m,j},\quad&space;j=1,2,..,J"><img src="../_assets/公式_20180717145223.png" /></a></div>
 
@@ -604,12 +608,12 @@
 
 
 ## XGBoost 算法
-> [一步一步理解GB、GBDT、xgboost](https://www.cnblogs.com/wxquare/p/5541414.html) - wxquare - 博客园 
+> [一步一步理解GB、GBDT、xgboost](https://www.cnblogs.com/wxquare/p/5541414.html) - wxquare - 博客园
 - XGBoost 是改进的[梯度提升(GB)算法](#梯度提升GB算法)；
 - [XGBoost 库](https://github.com/dmlc/xgboost)是 XGBoost 算法的高效实现
 
 ### XGBoost 与 GB 的主要区别
-> [Introduction to Boosted Trees](http://xgboost.readthedocs.io/en/latest/model.html) — xgboost 0.72 documentation 
+> [Introduction to Boosted Trees](http://xgboost.readthedocs.io/en/latest/model.html) — xgboost 0.72 documentation
 - 首先，定义一棵树 `f(x)` 为
   <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=f_t(x)&space;=&space;w_{q(x)},&space;w&space;\in&space;R^T,\quad&space;q:R^d\rightarrow&space;\{1,2,\cdots,T\}&space;."><img src="../_assets/公式_201807191434562.png" /></a></div>
 
@@ -645,7 +649,7 @@ TODO
 # 机器学习实践
 
 ## Box–Muller 变换
-> [Box-Muller变换原理详解](http://shishuai.org/index.php/2018/06/28/1-2/) – 史帅个人网站 
+> [Box-Muller变换原理详解](http://shishuai.org/index.php/2018/06/28/1-2/) – 史帅个人网站
 - Box–Muller 变换是一个从**均匀分布**中得到**正态分布**采样的算法
 
 - Box–Muller 变换定理：
@@ -653,7 +657,7 @@ TODO
   假设随机变量`U1`和`U2`是 IID(独立同分布) 的，且 `U1,U2 ∽ U(0,1)`，令`Z1,Z2`满足
   <div align="center"><img src="../_assets/公式_20180723153506.png" /></div>
   <!-- \begin{aligned}Z_0&=\cos(2\pi U_1)\sqrt{-2\ln U_2}\\Z_1&=\sin(2\pi U_1)\sqrt{-2\ln U_2}\end{aligned} -->
-  
+
   则 `Z1,Z2 ∽ N(0, 1)`，即 `Z1,Z2` 服从标准正态分布。
 
 
@@ -663,11 +667,11 @@ TODO
 ## SVD
 
 ## PCA
-- 
+-
 
 ## t-SNE
 - 在高维中接近，在低维中也接近
 - 目标函数：KL 散度（非对称）
 
 ## Reference
-- [Visualizing MNIST: An Exploration of Dimensionality Reduction](http://colah.github.io/posts/2014-10-Visualizing-MNIST/) - colah's blog 
+- [Visualizing MNIST: An Exploration of Dimensionality Reduction](http://colah.github.io/posts/2014-10-Visualizing-MNIST/) - colah's blog
