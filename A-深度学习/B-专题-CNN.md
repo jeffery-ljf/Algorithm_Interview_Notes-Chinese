@@ -183,11 +183,11 @@ Index
 
 当前feature map的边缘补0数量为：*k* - *p* - *1*
 
+当前feature map元素与元素之间补零的数量：*s* - *1*
+
 反卷积输出的feature map大小：
 
 ![](../_assets/反卷积输出大小公式.gif)
-
-当前feature map元素与元素之间补零的数量：*s* - *1*
 
 这里的*k*、*p*、*s*都是卷积操作的参数，也就是某一个feature map能够根据这些参数卷积出当前的feature map。
 
