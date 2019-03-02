@@ -75,7 +75,7 @@ Index
   > 这里可以看作是三张**单通道**图像，也可以看作是一张**三通道**的图像
   >> 更直观的图示 > [caffe im2col 详解](https://blog.csdn.net/mrhiuser/article/details/52672824) - CSDN博客
   >>
-  >> 具体的代码实现更复杂一些，因为这个图示中的操作并不能直接循环，具体请参考这篇 > [caffe源码深入学习6：超级详细的im2col绘图解析，分析caffe卷积操作的底层实现](https://blog.csdn.net/jiongnima/article/details/69736844) - CSDN博客 
+  >> 具体的代码实现更复杂一些，因为这个图示中的操作并不能直接循环，具体请参考这篇 > [caffe源码深入学习6：超级详细的im2col绘图解析，分析caffe卷积操作的底层实现](https://blog.csdn.net/jiongnima/article/details/69736844) - CSDN博客
 - 完整的计算过程
   <div align="center"><img src="../_assets/TIM截图20180823213211.png" height="" /></div>
 
@@ -92,10 +92,10 @@ Index
 - 因此，卷积的**反向传播**过程实际上跟普通的全连接是类似的
   <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\fn_jvn&space;\begin{array}{ll}&space;\text{Forward-prop:}&space;&&space;y=x\cdot&space;W\\&space;\text{Backward-prop:}&space;&&space;\nabla{x}=\nabla{y}\cdot&space;W^\mathsf{T}\\&space;\text{Weight-Gradient:}&space;&&space;\nabla{W}=x^\mathsf{T}\cdot&space;\nabla{y}\\&space;\text{Weight-Update:}&space;&&space;W_{new}=W_{old}-\eta\nabla{W}&space;\end{array}"><img src="../_assets/公式_20180823231624.png" height="" /></a></div>
 
-  > [High Performance Convolutional Neural Networks for Document Processing](https://hal.inria.fr/inria-00112631/document) 
+  > [High Performance Convolutional Neural Networks for Document Processing](https://hal.inria.fr/inria-00112631/document)
 
 **相关阅读**
-- [CNN的反向传播](http://jermmy.xyz/2017/12/16/2017-12-16-cnn-back-propagation/) | Jermmy's Lazy Blog 
+- [CNN的反向传播](http://jermmy.xyz/2017/12/16/2017-12-16-cnn-back-propagation/) | Jermmy's Lazy Blog
 - https://www.zhihu.com/question/56865789/answer/150785351
 
 ## 卷积的结构
@@ -108,7 +108,7 @@ Index
 **以 Conv2D 为例**
 - Tensorflow 中构造 conv2d 层的参数形状为：
   <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\fn_jvn&space;\begin{array}{ll}&space;\text{kernel-shape:}&space;&[k_{height},&space;k_{width},&space;n_{in},&space;n_{out}]&space;\\&space;\text{bias-shape:}&space;&&space;[n_{out}]\\&space;\end{array}"><img src="../_assets/公式_20180824102139.png" height="" /></a></div>
-  
+
   > `[k_height, k_width]` 表示卷积核的大小；`n_in` 表示“输入的通道数”，`n_out` 表示“输出的通道数”
 - 通常在描述卷积核的大小时，只会说 `[k_height, k_width]` 这一部分；比如 “这一层使用的是 `3*3` 的卷积核”。
 - 但卷积核应该还包括**输入的通道数** `n_in`，即 `[k_height, k_width, n_in]` 这部分；从几何的角度来看，卷积核应该是一个“长方体”，而不是“长方形/矩形”
@@ -139,8 +139,11 @@ Index
     <td><img width="150px" src="../_assets/padding_strides_odd.gif"></td>
   </tr>
 </table>
-
 <!-- TODO: 更细的分类 -->
+
+如果n为当前feature map的大小，k为kernel的大小，p为padding的大小，s为stride的大小，则卷积输出大小的公式：
+
+![](../_assets/卷积输出大小公式.gif)
 
 ### 转置卷积
 - 转置卷积（Transposed Convolution），又称反卷积（Deconvolution）、Fractionally Strided Convolution
@@ -176,6 +179,18 @@ Index
   </tr>
 </table>
 
+>怎么设计反卷积的feature map以致能直接使用卷积操作代替反卷积？
+
+当前feature map的边缘补0数量为：*k* - *p* - *1*
+
+反卷积输出的feature map大小：
+
+![](../_assets/反卷积输出大小公式.gif)
+
+当前feature map元素与元素之间补零的数量：*s* - *1*
+
+这里的*k*、*p*、*s*都是卷积操作的参数，也就是某一个feature map能够根据这些参数卷积出当前的feature map。
+
 ### 空洞卷积
 - 空洞卷积（Atrous Convolutions）也称扩张卷积（Dilated Convolutions）、膨胀卷积。
   <div align="center"><img src="../_assets/conv_dilation.gif" height="200" /><br/>No padding, no strides.</div>
@@ -201,13 +216,13 @@ Index
   TODO: 维度变化
 
 ## 门卷积
-> [卷积新用之语言模型](https://blog.csdn.net/stdcoutzyx/article/details/55004458) - CSDN博客 
+> [卷积新用之语言模型](https://blog.csdn.net/stdcoutzyx/article/details/55004458) - CSDN博客
 
 - 类似 LSTM 的过滤机制，实际上是卷积网络与**门限单元**（Gated Linear Unit）的组合
 - 核心公式
   <div align="center"><img src="../_assets/公式_20180720110804.png" /></div>
   <!-- \boldsymbol{Y}=\text{Conv1D}_{(1)}(\boldsymbol{X}) \otimes \sigma\Big(\text{Conv1D}_{(2)}(\boldsymbol{X})\Big)dsymbol{X})\Big) -->
-  
+
   > 中间的运算符表示**逐位相乘**—— Tensorflow 中由 `tf.multiply(a, b)` 实现，其中 a 和 b 的 shape 要相同；后一个卷积使用`sigmoid`激活函数
 
 - 一个门卷积 Block
@@ -252,7 +267,7 @@ Index
 
     - 分层注意力模块通过一个**层次结构**将过去编码向量**汇总**到一个**上下文向量**`C_t` ——这是一种更好的**观察过去信息**的方式（观点）
     - **分层结构**可以看做是一棵**树**，其路径长度为 `logN`，而 RNN/LSTM 则相当于一个**链表**，其路径长度为 `N`，如果序列足够长，那么可能 `N >> logN`
-    > [放弃 RNN/LSTM 吧，因为真的不好用！望周知~](https://blog.csdn.net/heyc861221/article/details/80174475) - CSDN博客 
+    > [放弃 RNN/LSTM 吧，因为真的不好用！望周知~](https://blog.csdn.net/heyc861221/article/details/80174475) - CSDN博客
 
 **任务角度(1)**
 1. 从任务本身考虑，我认为也是 CNN 更有利，LSTM 因为能记忆比较长的信息，所以在推断方面有不错的表现（直觉）；但是在事实类问答中，并不需要复杂的推断，答案往往藏在一个 **n-gram 短语**中，而 CNN 能很好的对 n-gram 建模。
