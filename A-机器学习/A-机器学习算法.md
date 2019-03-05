@@ -439,7 +439,7 @@
   <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;&R_1(1,6)=\{x|x\le&space;6\}=\{1,2,3,4,5,6\}\\&space;&R_2(1,6)=\{x|x>6\}=\{7,8,9,10\}\\&space;&\&space;c_1=\frac{1}{|R_1|}=\frac{1}{6}\sum_{x_i\in&space;R_1}y_i=6.24\\&space;&\&space;c_2=\frac{1}{|R_2|}=\frac{1}{4}\sum_{x_i\in&space;R_2}y_i=8.91\\&space;\end{aligned}"><img src="../_assets/公式_20180718104559.png" /></a></div>
 
 - 所以第一棵决策树为
-  <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;T_1(x)&=\left\{\begin{matrix}&space;6.24,&space;&x<6&space;\\&space;8.91,&space;&x\ge6&space;\end{matrix}\right.\\&space;f_1(x)&=T_1(x)&space;\end{aligned}"><img src="../_assets/公式_20180718105727.png" /></a></div>
+  <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;T_1(x)&=\left\{\begin{matrix}&space;6.24,&space;&x\leq6&space;\\&space;8.91,&space;&x>6&space;\end{matrix}\right.\\&space;f_1(x)&=T_1(x)&space;\end{aligned}"><img src="../_assets/CART回归树公式1.gif" /></a></div>
 
 
 # 集成学习
