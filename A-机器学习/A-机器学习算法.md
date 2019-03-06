@@ -217,6 +217,30 @@
 
 ### 核函数与核技巧
 - **核函数**表示将输入从输入空间映射到特征空间后得到的特征向量之间的内积
+- 常用**核函数**：
+1. Linear Kernel（线性核函数）
+2. Polynomial Kernel（多项式核函数）
+3. Gaussian Kernel（高斯核函数，鲁棒径向基核函数）
+4. Exponential Kernel（指数核函数）
+5. Laplacian Kernel（拉普拉斯核函数）
+6. ANOVA Kernel（ANOVA核函数，也属于径向基核函数）
+7. Sigmoid Kernel（Sigmoid核函数）
+8. Rational Quadratic Kernel（二次有理核函数）
+9. Multiquadric Kernel（多元二次核函数）
+10. Inverse Multiquadric Kernel（逆多元二次核函数）
+11. Circular Kernel（循环核函数？）
+12. Spherical Kernel（球形核函数？）
+13. Wave Kernel（波形核函数？）
+14. Triangular Kernel（三角核函数）
+15. Log Kernel（对数核函数）
+16. Spline Kernel（Spline核函数）
+17. Bessel Kernel（Bessel核函数）
+18. Cauchy Kernel（柯西核函数）
+19. Chi-Square Kernel（卡方核函数）
+20. Histogram Intersection Kernel（直方图交叉核函数）
+21. Generalized Histogram Intersection（广义直方图交叉核）
+22. Generalized T-Student Kernel（广义T-S核函数）
+23. Bayesian Kernel（贝叶斯核函数）
 
 ### 最大间隔超平面背后的原理
 > 机器学习技法 (1-5) - 林轩田
